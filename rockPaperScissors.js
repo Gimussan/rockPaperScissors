@@ -1,4 +1,4 @@
-console.log("test");
+
 // function called getComputerChoice//
 
 function getComputerChoice(max) {
@@ -17,9 +17,15 @@ function getComputerChoice(max) {
 
 }
 console.log(getComputerChoice(3));
+//get users input//
+var userchoice = prompt ("choose rock, paper or scissors");
+
+console.log(userchoice);
 
 
-
+//if rock //
+//if paper//
+//if scissors//
 
 
 
