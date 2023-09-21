@@ -1,64 +1,56 @@
+let playerScore = 0
+let computerScore = 0
+const buttons = document.querySelectorAll('input')
 
-// function called getComputerChoice//
-let computerChoiceInt = 0;
-function getComputerChoice(max) {
-    const number  = Math.floor(Math.random() * max)
-    // if getComputerChoice = 0 then choice = rock//
-    if ( number  %3 === 0) {
-        return 'rock';
+function computerPlay() {
+    let choices = ['rock', 'paper', 'scissors']
+    return choices[Math.floor(Math.random() * choices.length)]
+}
+
+function disableButtons() {
+    buttons.forEach(elem => {
+        elem.disabled = true
+    })
+}
+
+function playRound(playerSelection) {
+    let computerSelection = computerPlay()
+    let result = ""
+
+    if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
+        (playerSelection == 'scissors' && computerSelection == 'paper') ||
+        (playerSelection == 'paper' && computerSelection == 'rock')) {
+        
+        playerScore += 1
+        result = ('You win! ' + playerSelection + ' beats ' + computerSelection
+            + "<br><br>Player score: " + playerScore + "<br>Computer score: " + computerScore)
+
+        if (playerScore == 5) {
+            result += '<br><br>You won the game! Reload the page to play again'
+            disableButtons()
+        }
     }
-    // if getComputerChoice = 1 then choice = paper//
-    if ( number  %3 === 1) {
-        return 'paper';
+    else if (playerSelection == computerSelection) {
+        result = ('It\'s a tie. You both chose ' + playerSelection
+            + "<br><br>Player score: " + playerScore + "<br>Computer score: " + computerScore)
     }
-    // if getComputerChoice = 2 then choice = scissors/
+    else {
+        computerScore += 1
+        result = ('You lose! ' + computerSelection + ' beats ' + playerSelection
+            + "<br><br>Player score: " + playerScore + "<br>Computer score: " + computerScore)
 
-    return 'scissors';
+        if (computerScore == 5) {
+            result += '<br><br>I won the game! Reload the page to play again'
+            disableButtons()
+        }
+    }
 
+    document.getElementById('result').innerHTML = result
+    return
 }
-console.log(getComputerChoice(3));
 
-
-if (getComputerChoice.toLowerCase === "rock"){
-    computerChoiceInt = 0
-}
-if (getComputerChoice.toLowerCase ===  "paper"){
-    computerChoiceInt = 1
-}
-if (getComputerChoice.toLowerCase ===  "scissors"){
-    computerChoiceInt = 2
-}
-console.log(computerChoiceInt);
-
-//get users input//
-var userchoice = prompt ("choose rock, paper or scissors");
-let playerChoiceInt = 0;
-
-
-//changing the str to a int value of 0 if paper//
-if (userchoice.toLowerCase() === "rock") {
-    playerChoiceInt = 0
-}
-//changing the str to a int value of 1 if paper//
-if (userchoice.toLowerCase() === "paper") {
-    playerChoiceInt = 1
-}
-//changing the str to a int value of 2 if paper//
-if (userchoice.toLowerCase() === "scissors") {
-    playerChoiceInt = 2
-}
-console.log(userchoice);
-console.log(playerChoiceInt);
-
-
-
-
-
-
-
-
-
-
-
-
-
+buttons.forEach(button =>{
+    button.addEventListener('click', function(){
+        playRound(button.value)
+    })
+})
