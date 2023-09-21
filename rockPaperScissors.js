@@ -1,6 +1,6 @@
 
 // function called getComputerChoice//
-
+let computerChoiceInt = 0;
 function getComputerChoice(max) {
     const number  = Math.floor(Math.random() * max)
     // if getComputerChoice = 0 then choice = rock//
@@ -17,25 +17,48 @@ function getComputerChoice(max) {
 
 }
 console.log(getComputerChoice(3));
+
+
+if (getComputerChoice.toLowerCase === "rock"){
+    computerChoiceInt = 0
+}
+if (getComputerChoice.toLowerCase ===  "paper"){
+    computerChoiceInt = 1
+}
+if (getComputerChoice.toLowerCase ===  "scissors"){
+    computerChoiceInt = 2
+}
+console.log(computerChoiceInt);
+
 //get users input//
 var userchoice = prompt ("choose rock, paper or scissors");
+let playerChoiceInt = 0;
 
+
+//changing the str to a int value of 0 if paper//
+if (userchoice.toLowerCase() === "rock") {
+    playerChoiceInt = 0
+}
+//changing the str to a int value of 1 if paper//
+if (userchoice.toLowerCase() === "paper") {
+    playerChoiceInt = 1
+}
+//changing the str to a int value of 2 if paper//
+if (userchoice.toLowerCase() === "scissors") {
+    playerChoiceInt = 2
+}
 console.log(userchoice);
-
-
-//if rock //
-//if paper//
-//if scissors//
+console.log(playerChoiceInt);
 
 
 
 
 
-// paper beats rock (1 beats 0)//
-// scissors beats paper ( 2 beats 1)//
-// rock beats scissors (0 beats 2) //
 
 
-// choose at random between rock paper scissors and save//
-// choose rock paper or scissors//
+
+
+
+
+
 
